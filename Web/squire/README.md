@@ -85,6 +85,7 @@ Date: Sun, 13 Oct 2024 13:08:22 GMT
 ``` 
 
 Loading the refrenced "/static/success.gif" gave me a gif with the flag!
+
 ![Flag GIF](success.gif)
 
 
