@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secret</title>
+</head>
+<body>
+    <h1 id="flag"></h1>
+    <script>
+        function decodeBase64(str) {
+            return atob(str);
+        }
+
+        function decryptFlag(encrypted, key) {
+            var decipher = crypto.subtle.importKey("raw", new Uint8Array(decodeBase64(key).split('').map(c => c.charCodeAt(0))), "AES-CBC", false, ["decrypt"]).then(key => {
+                var iv = new Uint8Array(decodeBase64(encrypted).split('').slice(0, 16).map(c => c.charCodeAt(0)));
+                var data = new Uint8Array(decodeBase64(encrypted).split('').slice(16).map(c => c.charCodeAt(0)));
+                return crypto.subtle.decrypt({ name: "AES-CBC", iv: iv }, key, data);
+            }).then(decrypted => {
+                var decoder = new TextDecoder();
+                return decoder.decode(new Uint8Array(decrypted));
+            }).catch(err => console.error(err));
+            return decipher;
+        }
+
+        var encryptedFlag = "UM1FH1zLiTyU2loo3FCu/tgvY9ATq37m2cbkvNEWbyKIwBB1nfjlRetpaZ/2Av+LAyOzSsq9QF6BFYKE/gi5jg==";
+        var key = "H2t5Yvr4lNEjCPrTsGz5mA==";
+
+        decryptFlag(encryptedFlag, key).then(flag => {
+            document.getElementById("flag").innerHTML = flag;
+        });
+    </script>
+</body>
+</html>
