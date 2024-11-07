@@ -8,9 +8,7 @@ Snake has gone turn-based, but the game takes too long...
 <h2>Solve:</h2>
 To solve this i developed a python program using pwntools to read from the tcp-session. The program is called solve.py
 
-
-[Video](demo.webm)
-
+[demo.webm](https://github.com/user-attachments/assets/1c5f907b-e41c-484e-a147-bcfcbe84d96d)
 
 <h2>Flag:</h2>
 
